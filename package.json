@@ -1,0 +1,23 @@
+{
+  "name": "fr.liris.6dofvrthermalfeedback",
+  "version": "0.0.1",
+  "displayName": "6DoF VR Thermal Feedback",
+  "description": "Unity Integration for our Thermal Feedback System presented in IEEE VR 2025 Poster Session.",
+  "unity": "2022.3",
+  "unityRelease": "38f1",
+  "documentationUrl": "https://github.com/liris-xr/6dof-vr-thermal-feedback",
+  "licensesUrl": "https://github.com/liris-xr/6dof-vr-thermal-feedback",
+  "keywords": "Multisensory VR",
+  "author": {
+    "name": "Sophie Villenave",
+    "email": "sophie.villenave@liris.cnrs.fr",
+    "url": "https://xr.liris.cnrs.fr/team/sophie-villenave"
+  },
+  "samples": [
+        {
+            "displayName": "Demo",
+            "description": "Contains a demo scene with preconfigured virtual sources and thermal devices.",
+            "path": "Samples~/"
+        }
+    ]
+}
