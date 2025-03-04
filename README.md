@@ -10,18 +10,18 @@
 </p> -->
 
 ## Overview
-Creating ambient thermal feedback for VR experience is a challenge, and while numerous solutions in the litterature exist to provide thermal sensation, they are often very complex and under-documented. As this makes replication tedious, we propose a simple and tried system, that uses infrared lamps and fans, which can be easily controlled and are proven to provide quality thermal sensation while in VR, which enhances is shown to enhance user quality of experience, and can also be crucial to specific applications. This repository hosts the Unity package we developed to control our thermal feedback system from a VR application. It also contains the technical documentation required to replicate the system as it is presented in the poster.
+Creating ambient thermal feedback for VR experience is a challenge, and while numerous solutions in the litterature exist to provide thermal sensation, they are often very complex and under-documented. As this makes replication tedious, we propose a simple and tried system, that uses infrared lamps and fans, which can be easily controlled and is proven to provide quality thermal sensation while in VR, which is shown to enhance user quality of experience, and can also be crucial to specific applications. This repository hosts the Unity package we developed to control our thermal feedback system from a VR application. It also contains the technical documentation required to replicate the system as it is presented in the poster.
 
 ## Thermal Feedback System
 ### Hardware Shopping List
-* 4 x 300W Infrared Lamps (Link)
-* 4 x Lamp Holders (Link)
-* 1 x DMX 4-Way Dimmer (Link)
-* 4 x DMX Fans (Link)
-* 1 x Arduino Mega (Link)
-* 1 x DMX Shield for Arduino (Link)
-* 2 x Jumper Wire Female to Female (Link)
-* 5 x 3-pin DMX Cables (Link)
+* 4 x [300W Infrared Lamps](https://uk.rs-online.com/web/p/heat-lamps/7897909)
+* 4 x Lamp Holders
+* 1 x [DMX 4-Way Dimmer](https://www.thomann.co.uk/stairville_dds_405_lc_dmx_4_ch._dimmer.htm)
+* 4 x [DMX Fans](https://www.thomann.co.uk/adj_entour_cyclone.htm)
+* 1 x [Arduino Mega](https://store.arduino.cc/products/arduino-mega-2560-rev3?srsltid=AfmBOorwUxOtEAnLyQ9JH7IWtvPmKv4zfdIC7xoHMsMAQSeB1WqoUrns))
+* 1 x [DMX Shield for Arduino](https://www.digikey.co.uk/en/products/detail/dfrobot/DFR0260/7087143)
+* 2 x Jumper Wire Female to Female
+* 5 x [3-pin DMX Cables](https://www.thomann.co.uk/stairville_pdc3cc_dmx_cable_50_m_3_pin.htm)
 
 ### Arduino DMX Controller
 #### Requirements  
