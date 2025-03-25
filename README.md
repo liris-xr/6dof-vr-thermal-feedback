@@ -20,6 +20,7 @@ Creating ambient thermal feedback for VR experience is a challenge, and while nu
 * 4 x [DMX Fans](https://www.thomann.co.uk/adj_entour_cyclone.htm)
 * 1 x [Arduino Mega](https://store.arduino.cc/products/arduino-mega-2560-rev3?srsltid=AfmBOorwUxOtEAnLyQ9JH7IWtvPmKv4zfdIC7xoHMsMAQSeB1WqoUrns))
 * 1 x [DMX Shield for Arduino](https://www.digikey.co.uk/en/products/detail/dfrobot/DFR0260/7087143)
+* 1 x [Shield Stack Connectors ARD85](https://www.digikey.fr/en/products/detail/adafruit-industries-llc/85/5154649)
 * 2 x Jumper Wire Female to Female
 * 5 x [3-pin DMX Cables](https://www.thomann.co.uk/stairville_pdc3cc_dmx_cable_50_m_3_pin.htm)
 
@@ -42,18 +43,24 @@ Creating ambient thermal feedback for VR experience is a challenge, and while nu
    - Open `Sketch` → `Include Library` → `Manage Libraries...`  
    - Install [DMXSerial](https://github.com/mathertel/DMXSerial)
 
-4. **Upload the Firmware**  
+4. **Modify DMX Serial to use RX/TX 1**
+   To free Serial Port 0 for USB connection with the computer, you need to change the port used by the DMX shield. To do so, enable the definitions for Serial Port 1 in the DMXSerial library file ``src\DMXSerial_avr.h`` by uncommenting the following line:
+```
+#define DMX_USE_PORT1
+```
+
+5. **Upload the Firmware**  
    - Open the provided firmware `.ino` file. It is available in the Samples folder of the Unity Package.  
    - Click `Verify` (✔) to compile the code.  
    - Click `Upload` (→) to flash the firmware onto the Arduino.  
 
-5. **Confirm Installation**  
+6. **Confirm Installation**  
    - Open `Tools` → `Serial Monitor`.  
    - Set the baud rate to **115200** (or as specified).  
    - If you see "DMX" in the monitor, the firmware is successfully installed.  
 
 ### Wiring
-TBD
+Plug DMX Shield on the Arduino board using the stack connectors except for the RX/TX pins. Connect the DMX Shield RX/TX pins to the Serial Port 1 RX/TX pins on the Arduino board using 2 F/F jumper wires. 
 
 ## Unity Package
 ### Prerequisites  
