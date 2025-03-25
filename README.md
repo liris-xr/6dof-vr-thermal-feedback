@@ -1,6 +1,6 @@
 # 6dof-vr-thermal-feedback
 <p align="center">
-  Repository for the IEEE 2025 Poster - <b>Dynamic and Modular Thermal Feedback for Interactive 6DoF VR: Implementation and Evaluation</b>
+  Repository for the IEEE VR 2025 Poster - <b>Dynamic and Modular Thermal Feedback for Interactive 6DoF VR: Implementation and Evaluation</b>
 </p>
 <p align="center">
   Sophie Villenave, Pierre Raimbaud, Guillaume Lavoué
