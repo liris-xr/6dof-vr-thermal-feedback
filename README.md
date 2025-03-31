@@ -19,6 +19,7 @@ Creating ambient thermal feedback for VR experience is a challenge, and while nu
 * 1 x [DMX 4-Way Dimmer](https://www.thomann.co.uk/stairville_dds_405_lc_dmx_4_ch._dimmer.htm)
 * 4 x [DMX Fans](https://www.thomann.co.uk/adj_entour_cyclone.htm)
 * 1 x [Arduino Mega](https://store.arduino.cc/products/arduino-mega-2560-rev3?srsltid=AfmBOorwUxOtEAnLyQ9JH7IWtvPmKv4zfdIC7xoHMsMAQSeB1WqoUrns))
+* 1 x USB-B 2.0 (Arduino) to USB-A or USB-C (PC) cable. Arduino Mega use **USB-B 2.0** connector, which differs from USB-B 3.0 connector.
 * 1 x [DMX Shield for Arduino](https://www.digikey.co.uk/en/products/detail/dfrobot/DFR0260/7087143)
 * 1 x [Shield Stack Connectors ARD85](https://www.digikey.fr/en/products/detail/adafruit-industries-llc/85/5154649)
 * 2 x Jumper Wire Female to Female
@@ -44,13 +45,15 @@ Creating ambient thermal feedback for VR experience is a challenge, and while nu
    - Install [DMXSerial](https://github.com/mathertel/DMXSerial)
 
 4. **Modify DMX Serial to use RX/TX 1**
-   To free Serial Port 0 for USB connection with the computer, you need to change the port used by the DMX shield. To do so, enable the definitions for Serial Port 1 in the DMXSerial library file ``src\DMXSerial_avr.h`` by uncommenting the following line:
+   - DMX Serial Library files can be found in the `libraries\DMXSerial\src` folder of your Arduino IDE installation.
+   - Within Arduino IDE, go to `File` → `Preferences` → `Sketchbook Location` to locate the folder.
+   - To free Serial Port 0 for USB connection with the computer, you need to change the port used by the DMX shield. To do so, enable the definitions for Serial Port 1 in the DMXSerial library file ``src\DMXSerial_avr.h`` by uncommenting the following line:
 ```
 #define DMX_USE_PORT1
 ```
 
 5. **Upload the Firmware**  
-   - Open the provided firmware `.ino` file. It is available in the Samples folder of the Unity Package.  
+   - Open the provided firmware `LampFanController.ino` file. It is available in the `Arduino~` folder of the Unity Package.  
    - Click `Verify` (✔) to compile the code.  
    - Click `Upload` (→) to flash the firmware onto the Arduino.  
 
