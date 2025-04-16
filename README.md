@@ -94,7 +94,9 @@ TBD
 ## Troubleshooting  
 ### Common Issues  
 1. **System.IO.Ports Namespace Missing**  
-   - Ensure **.NET Framework** is enabled in **Player Settings**. 
+   - Ensure **.NET Framework** is enabled in **Player Settings**.
+2. **Automatic retrieval of COM port fails**
+   - Ensure your project scripting backend is set to **Mono** in **Player Settings**. GetSerialPortNames() is not supported via **IL2CPP**. [Unity Forum Thread](https://discussions.unity.com/t/il2cpp-system-io-serialport-arduino/736323/5)
 
 
 ## License  
