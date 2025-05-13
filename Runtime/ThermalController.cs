@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class ThermalController : MonoBehaviour
@@ -25,6 +26,9 @@ public class ThermalController : MonoBehaviour
             
             foreach(var thermalSource in thermalSources)
             {
+                if(!thermalSource.enabled || !thermalSource.gameObject.activeSelf)
+                    continue;
+
                 if (thermalSource.mode == ThermalComputeMode.Environment)
                 {
                     ComputeEnvironment(thermalSource);
@@ -51,7 +55,7 @@ public class ThermalController : MonoBehaviour
     {
         foreach (var device in thermalDevices)
         {
-            device.nextIntensity += thermalSource.intensity;
+            device.nextIntensity += thermalSource.Intensity;
         }
     }
     
@@ -60,7 +64,7 @@ public class ThermalController : MonoBehaviour
         foreach (var device in thermalDevices)
         {
             var distance = Vector3.Distance(_thermalListener.transform.position, thermalSource.transform.position);
-            var intensity = thermalSource.intensity / (1 + Mathf.Pow(distance, 2));
+            var intensity = thermalSource.Intensity / (1 + Mathf.Pow(distance, 2));
 
             device.nextIntensity += intensity;
         }
@@ -71,11 +75,11 @@ public class ThermalController : MonoBehaviour
         foreach (var device in thermalDevices)
         {
             var position = device.transform.position;
-            var distanceSourceDevice =
-                Vector3.Distance(thermalSource.transform.position, position);
+            var distanceSourceDevice = Vector3.Distance(thermalSource.transform.position, position);
             var distanceDeviceListener = Vector3.Distance(_thermalListener.transform.position, position);
+            var distanceListenerSource = Vector3.Distance(_thermalListener.transform.position,thermalSource.transform.position);
 
-            var intensity = thermalSource.intensity / (1 + Mathf.Pow(distanceDeviceListener / distanceSourceDevice, 2));
+            var intensity = thermalSource.Intensity / (1 + Mathf.Pow((distanceSourceDevice * distanceListenerSource) / distanceDeviceListener, 2));
 
             device.nextIntensity += intensity;
         }

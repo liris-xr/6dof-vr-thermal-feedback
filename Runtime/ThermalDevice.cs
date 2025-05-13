@@ -8,9 +8,10 @@ public class ThermalDevice : MonoBehaviour
 {
     public int DMXAddress;
 
+    [HideInInspector]
     public ArduinoDmxController _arduinoDmxController;
 
-    [SerializeField] private float intensity;
+    private float intensity;
 
     public float Intensity
     {
