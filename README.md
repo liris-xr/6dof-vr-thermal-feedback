@@ -103,4 +103,14 @@ TBD
 GPL v3  
 
 ## Citation
-TBD
+S. Villenave, P. Raimbaud and G. Lavoué, "Dynamic and Modular Thermal Feedback for Interactive 6DoF VR: Implementation and Evaluation," 2025 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW), Saint Malo, France, 2025, pp. 1204-1205, doi: 10.1109/VRW66409.2025.00248.
+
+@INPROCEEDINGS{10973033,
+  author={Villenave, Sophie and Raimbaud, Pierre and Lavoué, Guillaume},
+  booktitle={2025 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)}, 
+  title={Dynamic and Modular Thermal Feedback for Interactive 6DoF VR: Implementation and Evaluation}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1204-1205},
+  doi={10.1109/VRW66409.2025.00248}}
