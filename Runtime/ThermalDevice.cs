@@ -62,7 +62,5 @@ public class ThermalDevice : MonoBehaviour
         previousIntensity = intensity;
     }
 
-    
-    
 }
 #endif

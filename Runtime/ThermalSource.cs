@@ -33,13 +33,10 @@ public class ThermalSource : MonoBehaviour
     void Start()
     {
         renderers = GetComponent<Renderer>();
-        //hitPlayer = true;
     }
 
     public void CheckForColliders()
     {
-        //hitPlayer = true;
-
         playerRay = new Ray(transform.position, (player.transform.position - transform.position).normalized);
 
 
@@ -51,14 +48,14 @@ public class ThermalSource : MonoBehaviour
 
             if (hit.collider.gameObject == player)
             {
-                Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.red);
+                //Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.red);
 
                 renderers.material = greenMat;
                 hitPlayer = true;
             }
             else
             {
-                Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.green);
+                //Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.green);
 
                 hitPlayer = false;
                 renderers.material = redMat;
@@ -67,7 +64,7 @@ public class ThermalSource : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
+            //Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
             hitPlayer = false;
         }
 
