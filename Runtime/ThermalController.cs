@@ -83,7 +83,7 @@ public class ThermalController : MonoBehaviour
 
             var intensity = thermalSource.Intensity / (1 + Mathf.Pow((distanceSourceDevice * distanceListenerSource) / distanceDeviceListener, 2));
 
-            if (distanceSourceDevice >= thermalSource.distanceObjectHit)
+            if (thermalSource.distanceObjectHit != 0 && distanceSourceDevice >= thermalSource.distanceObjectHit)
             {
                 intensity = 0.0f;
                 device.renderers.material= device.redMat;

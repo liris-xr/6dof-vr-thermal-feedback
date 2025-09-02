@@ -22,7 +22,7 @@ public class ThermalSource : MonoBehaviour
     public Material redMat;
     public Material greenMat;
 
-    [HideInInspector] public bool hitPlayer = false;
+    [HideInInspector] public bool hitPlayer;
 
     public LayerMask layers;
 
@@ -33,11 +33,12 @@ public class ThermalSource : MonoBehaviour
     void Start()
     {
         renderers = GetComponent<Renderer>();
+        //hitPlayer = true;
     }
 
     public void CheckForColliders()
     {
-        hitPlayer = false;
+        //hitPlayer = true;
 
         playerRay = new Ray(transform.position, (player.transform.position - transform.position).normalized);
 
@@ -59,6 +60,7 @@ public class ThermalSource : MonoBehaviour
             {
                 Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.green);
 
+                hitPlayer = false;
                 renderers.material = redMat;
                 distanceObjectHit = hit.distance;
             }
@@ -66,9 +68,10 @@ public class ThermalSource : MonoBehaviour
         else
         {
             Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
+            hitPlayer = false;
         }
 
-        
+
     }
 
     void Update()
