@@ -14,7 +14,65 @@ public class ThermalSource : MonoBehaviour
 {
     public float _intensity;
     public ThermalComputeMode mode = ThermalComputeMode.Spatial;
-    
-    public float Intensity { get => _intensity; set  => _intensity = Mathf.Clamp(value, 0.0f, 2.0f); }
 
+    public float Intensity { get => _intensity; set => _intensity = Mathf.Clamp(value, 0.0f, 2.0f); }
+
+    private Ray playerRay;
+    private Renderer renderers;
+    public Material redMat;
+    public Material greenMat;
+
+    [HideInInspector] public bool hitPlayer = false;
+
+    public LayerMask layers;
+
+    public GameObject player;
+
+    [HideInInspector] public float distanceObjectHit;
+
+    void Start()
+    {
+        renderers = GetComponent<Renderer>();
+    }
+
+    public void CheckForColliders()
+    {
+        hitPlayer = false;
+
+        playerRay = new Ray(transform.position, (player.transform.position - transform.position).normalized);
+
+
+        float dist = Vector3.Distance(transform.position, player.transform.position);
+
+        if (Physics.Raycast(playerRay, out RaycastHit hit, dist, layers))
+        {
+            //Debug.Log(hit.collider.gameObject.name + "was hit");
+
+            if (hit.collider.gameObject == player)
+            {
+                Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.red);
+
+                renderers.material = greenMat;
+                hitPlayer = true;
+            }
+            else
+            {
+                Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.green);
+
+                renderers.material = redMat;
+                distanceObjectHit = hit.distance;
+            }
+        }
+        else
+        {
+            Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
+        }
+
+        
+    }
+
+    void Update()
+    {
+        CheckForColliders();
+    }
 }
