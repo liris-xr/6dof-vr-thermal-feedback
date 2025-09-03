@@ -95,7 +95,7 @@ This package requires Unity to be configured with the **.NET Framework** because
 ## Usage
 ### In your scene, add:
 1. Arduinio DMX Controller game object *(ArduinoDMXController.cs and OnDMXOpenHandler.cs)*. Make sure to set the band rate to 115200.
-2. ThemalListener.cs to the MainCamera. **[Recommended]**
+2. ThemalListener.cs to the MainCamera (or to a *Capsule* 3D object attached to the XR Origin. **[Recommended]**).
 3. Themal sources *(ThermalSource.cs)*. 
  >There are three types of themal sources you can choose from:
  > 
@@ -103,10 +103,14 @@ This package requires Unity to be configured with the **.NET Framework** because
  > 2. **Fall off:** Varies the thermal feedback based on inverse square law (No spatial awareness).
  >3. **Spatial:** Like the name suggests, the thermal feedback is computed based on the scatial orientation of the user.
 >
->__For Spatial source:__ In the layers dropdown, select all the layers you want the Source to detect. Make sure the user layer is included. For the player game objct, it is recommended to use a *capsule* 3D object which is attached to the XR Origin.
+>__For Spatial source:__ In the layers dropdown, select all the layers you want the Thermal Source to detect. Make sure the layer with the Thermal Listener is included. 
 
-4. Themal Devices
-5. Thermal Controller
+4. Themal Devices (Fans/Lights). **(Make sure the positions of your thermal devices in real world matches that of virtual scene.)**
+5. Thermal Follower *(ThermalFollower.cs)*
+> Make this the parent game object for all the thermal devices in the scene and choose XR Origin for Position and Rotation to follow. This will make the thermal devices to follow the user when they move.
+
+6. Thermal Controller *(ThermalController.cs)*
+> Add to the list, all the Thermal Sources and Thermal Devices in the scene accordingly.
  
 
 
