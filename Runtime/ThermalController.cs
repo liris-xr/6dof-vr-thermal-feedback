@@ -92,7 +92,6 @@ public class ThermalController : MonoBehaviour
             {
                 device.nextIntensity += intensity;
                 device.renderers.material = device.greenMat;
-
             }
         }
     }

@@ -26,27 +26,28 @@ public class ThermalSource : MonoBehaviour
 
     public LayerMask layers;
 
-    public GameObject player;
-
     [HideInInspector] public float distanceObjectHit;
+
+    private ThermalListener _thermalListener;
 
     void Start()
     {
         renderers = GetComponent<Renderer>();
+        _thermalListener = FindFirstObjectByType<ThermalListener>();
+
     }
 
     public void CheckForColliders()
     {
-        playerRay = new Ray(transform.position, (player.transform.position - transform.position).normalized);
+        playerRay = new Ray(transform.position, (_thermalListener.transform.position - transform.position).normalized);
 
-
-        float dist = Vector3.Distance(transform.position, player.transform.position);
+        float dist = Vector3.Distance(transform.position, _thermalListener.transform.position);
 
         if (Physics.Raycast(playerRay, out RaycastHit hit, dist, layers))
         {
             //Debug.Log(hit.collider.gameObject.name + "was hit");
 
-            if (hit.collider.gameObject == player)
+            if (hit.collider.gameObject == _thermalListener)
             {
                 //Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.red);
 
@@ -65,6 +66,7 @@ public class ThermalSource : MonoBehaviour
         else
         {
             //Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
+
             hitPlayer = false;
         }
 
@@ -73,6 +75,10 @@ public class ThermalSource : MonoBehaviour
 
     void Update()
     {
-        CheckForColliders();
+        if (mode== ThermalComputeMode.Spatial)
+        {
+            CheckForColliders();
+        }
+        
     }
 }

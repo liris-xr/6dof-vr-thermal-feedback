@@ -12,6 +12,10 @@
 ## Overview
 Creating ambient thermal feedback for VR experience is a challenge, and while numerous solutions in the litterature exist to provide thermal sensation, they are often very complex and under-documented. As this makes replication tedious, we propose a simple and tried system, that uses infrared lamps and fans, which can be easily controlled and is proven to provide quality thermal sensation while in VR, which is shown to enhance user quality of experience, and can also be crucial to specific applications. This repository hosts the Unity package we developed to control our thermal feedback system from a VR application. It also contains the technical documentation required to replicate the system as it is presented in the poster.
 
+>__*New:*__ __Obstacle Awareness__ 
+>
+>Obstacless between the thermal source and the user will be detected and the thermal feedback will be adjusted accordingly.
+
 ## Thermal Feedback System
 ### Hardware Shopping List
 * 4 x [300W Infrared Lamps](https://uk.rs-online.com/web/p/heat-lamps/7897909)
@@ -88,8 +92,26 @@ This package requires Unity to be configured with the **.NET Framework** because
 5. Click `Add` and wait for Unity to download and install the package.  
 6. Once installed, import the package's samples in your project.
 
-## Usage  
-TBD 
+## Usage
+### In your scene, add:
+1. Arduinio DMX Controller game object *(ArduinoDMXController.cs and OnDMXOpenHandler.cs)*. Make sure to set the band rate to 115200.
+2. ThemalListener.cs to the MainCamera. **[Recommended]**
+3. Themal sources *(ThermalSource.cs)*. 
+ >There are three types of themal sources you can choose from:
+ > 
+ > 1. **Envieronment:** Activate the thermal feedback uniformly no matter where the user is in the scene.
+ > 2. **Fall off:** Varies the thermal feedback based on inverse square law (No spatial awareness).
+ >3. **Spatial:** Like the name suggests, the thermal feedback is computed based on the scatial orientation of the user.
+>
+>__For Spatial source:__ In the layers dropdown, select all the layers you want the Source to detect. Make sure the user layer is included. For the player game objct, it is recommended to use a *capsule* 3D object which is attached to the XR Origin.
+
+4. Themal Devices
+5. Thermal Controller
+ 
+
+
+
+   
 
 ## Troubleshooting  
 ### Common Issues  
