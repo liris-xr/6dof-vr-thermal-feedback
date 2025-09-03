@@ -49,14 +49,14 @@ public class ThermalSource : MonoBehaviour
 
             if (hit.collider.gameObject == _thermalListener)
             {
-                //Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.red);
+                Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.red);
 
                 renderers.material = greenMat;
                 hitPlayer = true;
             }
             else
             {
-                //Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.green);
+                Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.green);
 
                 hitPlayer = false;
                 renderers.material = redMat;
@@ -65,7 +65,7 @@ public class ThermalSource : MonoBehaviour
         }
         else
         {
-            //Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
+            Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
 
             hitPlayer = false;
         }
