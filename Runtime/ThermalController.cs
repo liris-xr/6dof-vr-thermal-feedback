@@ -1,4 +1,6 @@
 # if !UNITY_ANDROID
+using Codice.Client.Common.GameUI;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +14,6 @@ public class ThermalController : MonoBehaviour
     
     private ThermalListener _thermalListener;
 
-    //private Renderer renderers;
     
     private void Start()
     {
@@ -83,17 +84,20 @@ public class ThermalController : MonoBehaviour
 
             var intensity = thermalSource.Intensity / (1 + Mathf.Pow((distanceSourceDevice * distanceListenerSource) / distanceDeviceListener, 2));
 
-            if (thermalSource.hitPlayer== false && distanceSourceDevice >= thermalSource.distanceObjectHit) 
+            if (thermalSource.hitPlayer== false)
             {
-                intensity = 0.0f;                
+                intensity = 0.0f;
+            }
+            else if(thermalSource.obsatacleAfterPlayer == true && thermalSource.distanceObsatacleAfterPlayer - distanceSourceDevice <= thermalSource.turnOffDistance)
+            {
+                intensity = 0.0f;
             }
             else
             {
                 device.nextIntensity += intensity;
             }
 
-
-            if (intensity== 0.0f)
+            if (intensity == 0.0f)
             {
                 device.renderers.material = device.redMat;
 

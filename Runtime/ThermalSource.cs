@@ -27,33 +27,44 @@ public class ThermalSource : MonoBehaviour
     public LayerMask layers;
 
     [HideInInspector] public float distanceObjectHit;
+    [HideInInspector] public float distanceObsatacleAfterPlayer;
 
-    //private ThermalListener _thermalListener;
+    private ThermalListener _thermalListener;
 
-    [SerializeField] GameObject player;
+    private GameObject player;
+    [HideInInspector]public bool obsatacleAfterPlayer;
+
+    [Tooltip("Maximum distance between the device and the obstacles before it turns off")]
+    public float turnOffDistance = 1.0f;
 
     void Start()
     {
         renderers = GetComponent<Renderer>();
-       // _thermalListener = FindFirstObjectByType<ThermalListener>();
+        _thermalListener = FindFirstObjectByType<ThermalListener>();
+        player = _thermalListener.gameObject;
 
     }
 
     public void CheckForColliders()
     {
-        hitPlayer = true;
+        hitPlayer = false;
+        obsatacleAfterPlayer= false;
 
         playerRay = new Ray(transform.position, (player.transform.position - transform.position).normalized);
 
         float dist = Vector3.Distance(transform.position, player.transform.position);
 
-        if (Physics.Raycast(playerRay, out RaycastHit hit, dist, layers))
+        RaycastHit[] hits= Physics.RaycastAll(playerRay, dist + 5.0f, layers);
+        Debug.DrawRay(playerRay.origin, playerRay.direction * (dist + 5.0f), Color.blue);
+
+        Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        foreach (var hit in  hits) 
         {
-            Debug.Log(hit.collider.gameObject.name + " was hit");
+            //Debug.Log(hit.collider.gameObject.name + " was hit");
 
             if (hit.collider.gameObject == player)
             {
-                Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.green);
 
                 renderers.material = greenMat;
                 hitPlayer = true;
@@ -61,18 +72,19 @@ public class ThermalSource : MonoBehaviour
             }
             else
             {
-                Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.red);
+                if (!hitPlayer)
+                {
+                    hitPlayer = false;
+                    renderers.material = redMat;
+                    break;
+                }
 
-                hitPlayer = false;
-                renderers.material = redMat;
-                distanceObjectHit = hit.distance;
+                else if(hit.distance - dist <= turnOffDistance)
+                {
+                    obsatacleAfterPlayer = true;
+                    distanceObsatacleAfterPlayer= hit.distance;
+                }                
             }
-        }
-        else
-        {
-            Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.blue);
-
-            hitPlayer = false;
         }
         
 
@@ -84,7 +96,9 @@ public class ThermalSource : MonoBehaviour
         {
             CheckForColliders();
         }
-        Debug.Log(hitPlayer);
-        
+        Debug.Log("hit player = " + hitPlayer);
+        Debug.Log("Obstacle after player = " + obsatacleAfterPlayer);
+
+
     }
 }
