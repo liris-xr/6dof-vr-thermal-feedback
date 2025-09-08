@@ -29,6 +29,8 @@ public class ThermalSource : MonoBehaviour
     [HideInInspector] public float distanceObjectHit;
     [HideInInspector] public float distanceObsatacleAfterPlayer;
 
+    [Tooltip ("Maximum distance for obstacle awareness")][SerializeField] private float maxDist = 5.0f;
+
     private ThermalListener _thermalListener;
 
     private GameObject player;
@@ -54,8 +56,8 @@ public class ThermalSource : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, player.transform.position);
 
-        RaycastHit[] hits= Physics.RaycastAll(playerRay, dist + 5.0f, layers);
-        Debug.DrawRay(playerRay.origin, playerRay.direction * (dist + 5.0f), Color.blue);
+        RaycastHit[] hits= Physics.RaycastAll(playerRay, dist + maxDist, layers);
+        Debug.DrawRay(playerRay.origin, playerRay.direction * (dist + maxDist), Color.blue);
 
         Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
 
