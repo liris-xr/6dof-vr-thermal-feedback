@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 8454682}
   - component: {fileID: 8454681}
   - component: {fileID: 8454685}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,6 +1134,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   distanceObjectHit: 0
+  distanceObsatacleAfterPlayer: 0
+  player: {fileID: 0}
+  obsatacleAfterPlayer: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1576,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.3364401, z: 0}
-  m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
+  m_LocalScale: {x: 0.63, y: 0.63, z: 0.63}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1559206415}
@@ -1815,6 +1818,14 @@ PrefabInstance:
     - target: {fileID: 4053579577978487484, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_PhysicsLayerMask.m_Bits
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033801203051696737, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033801203051696737, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_GazeInteractor
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5167925059111895691, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_IsActive
@@ -2306,8 +2317,11 @@ MonoBehaviour:
   hitPlayer: 0
   layers:
     serializedVersion: 2
-    m_Bits: 3221225599
+    m_Bits: 3221225595
   distanceObjectHit: 0
+  distanceObsatacleAfterPlayer: 0
+  player: {fileID: 1206993893}
+  obsatacleAfterPlayer: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
