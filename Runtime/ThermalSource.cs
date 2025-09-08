@@ -28,35 +28,40 @@ public class ThermalSource : MonoBehaviour
 
     [HideInInspector] public float distanceObjectHit;
 
-    private ThermalListener _thermalListener;
+    //private ThermalListener _thermalListener;
+
+    [SerializeField] GameObject player;
 
     void Start()
     {
         renderers = GetComponent<Renderer>();
-        _thermalListener = FindFirstObjectByType<ThermalListener>();
+       // _thermalListener = FindFirstObjectByType<ThermalListener>();
 
     }
 
     public void CheckForColliders()
     {
-        playerRay = new Ray(transform.position, (_thermalListener.transform.position - transform.position).normalized);
+        hitPlayer = true;
 
-        float dist = Vector3.Distance(transform.position, _thermalListener.transform.position);
+        playerRay = new Ray(transform.position, (player.transform.position - transform.position).normalized);
+
+        float dist = Vector3.Distance(transform.position, player.transform.position);
 
         if (Physics.Raycast(playerRay, out RaycastHit hit, dist, layers))
         {
-            //Debug.Log(hit.collider.gameObject.name + "was hit");
+            Debug.Log(hit.collider.gameObject.name + " was hit");
 
-            if (hit.collider.gameObject == _thermalListener)
+            if (hit.collider.gameObject == player)
             {
-                Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.red);
+                Debug.DrawRay(playerRay.origin, playerRay.direction * hit.distance, Color.green);
 
                 renderers.material = greenMat;
                 hitPlayer = true;
+                
             }
             else
             {
-                Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.green);
+                Debug.DrawRay(playerRay.origin, playerRay.direction * dist, Color.red);
 
                 hitPlayer = false;
                 renderers.material = redMat;
@@ -69,7 +74,7 @@ public class ThermalSource : MonoBehaviour
 
             hitPlayer = false;
         }
-
+        
 
     }
 
@@ -79,6 +84,7 @@ public class ThermalSource : MonoBehaviour
         {
             CheckForColliders();
         }
+        Debug.Log(hitPlayer);
         
     }
 }

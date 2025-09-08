@@ -48,7 +48,7 @@ public class ThermalController : MonoBehaviour
             foreach (var thermalDevice in thermalDevices)
             {
                 thermalDevice.Intensity = thermalDevice.nextIntensity;
-                thermalDevice.nextIntensity = 0f;
+                thermalDevice.nextIntensity = 0.0f;
             }
         }
     }
@@ -83,15 +83,25 @@ public class ThermalController : MonoBehaviour
 
             var intensity = thermalSource.Intensity / (1 + Mathf.Pow((distanceSourceDevice * distanceListenerSource) / distanceDeviceListener, 2));
 
-            if (thermalSource.distanceObjectHit != 0 && distanceSourceDevice >= thermalSource.distanceObjectHit)
+            if (thermalSource.hitPlayer== false && distanceSourceDevice >= thermalSource.distanceObjectHit) 
             {
-                intensity = 0.0f;
-                device.renderers.material= device.redMat;
+                intensity = 0.0f;                
             }
             else
             {
                 device.nextIntensity += intensity;
+            }
+
+
+            if (intensity== 0.0f)
+            {
+                device.renderers.material = device.redMat;
+
+            }
+            else
+            {
                 device.renderers.material = device.greenMat;
+
             }
         }
     }
