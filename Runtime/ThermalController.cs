@@ -1,6 +1,4 @@
 # if !UNITY_ANDROID
-using Codice.Client.Common.GameUI;
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
