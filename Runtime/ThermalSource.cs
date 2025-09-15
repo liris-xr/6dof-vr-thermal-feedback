@@ -81,7 +81,7 @@ public class ThermalSource : MonoBehaviour
                     break;
                 }
 
-                else if(hit.distance - dist <= turnOffDistance)
+                else if(hit.distance - dist <= turnOffDistance && hit.distance > dist)
                 {
                     obsatacleAfterPlayer = true;
                     distanceObsatacleAfterPlayer= hit.distance;
@@ -98,8 +98,8 @@ public class ThermalSource : MonoBehaviour
         {
             CheckForColliders();
         }
-        Debug.Log("hit player = " + hitPlayer);
-        Debug.Log("Obstacle after player = " + obsatacleAfterPlayer);
+        //Debug.Log("hit player = " + hitPlayer);
+        //Debug.Log("Obstacle after player = " + obsatacleAfterPlayer);
 
 
     }
