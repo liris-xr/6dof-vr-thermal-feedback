@@ -106,6 +106,8 @@ This package requires Unity to be configured with the **.NET Framework** because
  >3. **Spatial:** Like the name suggests, the thermal feedback is computed based on the scatial orientation of the user.
 >
 >__For Spatial source:__ In the layers dropdown, select all the layers you want the Thermal Source to detect. Make sure the layer with the Thermal Listener is included. 
+>
+>[Note: The layers, materials, Max Dist and turn off distance are only for Spatial Sources]
 
 4. Themal Devices (Fans/Lights). 
 >**Make sure the positions of your thermal devices in real world matches that of virtual scene.**
