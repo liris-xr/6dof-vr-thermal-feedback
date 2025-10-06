@@ -12,6 +12,10 @@
 ## Overview
 Creating ambient thermal feedback for VR experience is a challenge, and while numerous solutions in the litterature exist to provide thermal sensation, they are often very complex and under-documented. As this makes replication tedious, we propose a simple and tried system, that uses infrared lamps and fans, which can be easily controlled and is proven to provide quality thermal sensation while in VR, which is shown to enhance user quality of experience, and can also be crucial to specific applications. This repository hosts the Unity package we developed to control our thermal feedback system from a VR application. It also contains the technical documentation required to replicate the system as it is presented in the poster.
 
+>__*New:*__ __Obstacle Awareness__ 
+>
+>Obstacless between the thermal source and the user will be detected and the thermal feedback will be adjusted accordingly.
+
 ## Thermal Feedback System
 ### Hardware Shopping List
 * 4 x [300W Infrared Lamps](https://uk.rs-online.com/web/p/heat-lamps/7897909)
@@ -88,8 +92,31 @@ This package requires Unity to be configured with the **.NET Framework** because
 5. Click `Add` and wait for Unity to download and install the package.  
 6. Once installed, import the package's samples in your project.
 
-## Usage  
-TBD 
+## Usage
+### In your scene, add:
+1. Arduinio DMX Controller game object *(ArduinoDMXController.cs and OnDMXOpenHandler.cs)*. 
+> Make sure to set the band rate to 115200.
+
+2. ThemalListener.cs to the MainCamera (or to a *Capsule* 3D object attached to the XR Origin. **[Recommended]**).
+3. Themal sources *(ThermalSource.cs)*. 
+ >There are three types of themal sources you can choose from:
+ > 
+ > 1. **Envieronment:** Activate the thermal feedback uniformly no matter where the user is in the scene.
+ > 2. **Fall off:** Varies the thermal feedback based on inverse square law (No spatial awareness).
+ >3. **Spatial:** Like the name suggests, the thermal feedback is computed based on the scatial orientation of the user.
+>
+>__For Spatial source:__ In the layers dropdown, select all the layers you want the Thermal Source to detect. Make sure the layer with the Thermal Listener is included. 
+>
+>[Note: The layers, materials, Max Dist and turn off distance are only for Spatial Sources]
+
+4. Themal Devices (Fans/Lights). 
+>**Make sure the positions of your thermal devices in real world matches that of virtual scene.**
+
+5. Thermal Follower *(ThermalFollower.cs)*
+> Make this the parent game object for all the thermal devices in the scene and choose XR Origin for Position and Rotation to follow. This will make the thermal devices to follow the user when they move.
+
+6. Thermal Controller *(ThermalController.cs)*
+> Add to the list, all the Thermal Sources and Thermal Devices in the scene accordingly.
 
 ## Troubleshooting  
 ### Common Issues  

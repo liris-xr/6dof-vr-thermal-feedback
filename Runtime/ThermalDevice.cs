@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using Unity.Mathematics;
 using Object = System.Object;
+using System.Collections.Generic;
 
 public class ThermalDevice : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class ThermalDevice : MonoBehaviour
 
     private float elapsed;
 
+    [HideInInspector] public Renderer renderers;
+    public Material redMat;
+    public Material greenMat;
+
 
     private void Start()
     {
@@ -40,6 +45,8 @@ public class ThermalDevice : MonoBehaviour
         _arduinoDmxController = FindFirstObjectByType<ArduinoDmxController>();
 
         _arduinoDmxController.OnDmxOpen += SendIntensity;
+
+        renderers = GetComponent<Renderer>();
     }
     
     void SendIntensity()
@@ -54,5 +61,6 @@ public class ThermalDevice : MonoBehaviour
         _arduinoDmxController.SendData(valueDmx.ToString(), DMXAddress.ToString());
         previousIntensity = intensity;
     }
+
 }
 #endif

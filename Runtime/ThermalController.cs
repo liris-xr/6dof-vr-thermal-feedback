@@ -11,6 +11,7 @@ public class ThermalController : MonoBehaviour
     [SerializeField] private List<ThermalDevice> thermalDevices;
     
     private ThermalListener _thermalListener;
+
     
     private void Start()
     {
@@ -46,7 +47,7 @@ public class ThermalController : MonoBehaviour
             foreach (var thermalDevice in thermalDevices)
             {
                 thermalDevice.Intensity = thermalDevice.nextIntensity;
-                thermalDevice.nextIntensity = 0f;
+                thermalDevice.nextIntensity = 0.0f;
             }
         }
     }
@@ -81,7 +82,29 @@ public class ThermalController : MonoBehaviour
 
             var intensity = thermalSource.Intensity / (1 + Mathf.Pow((distanceSourceDevice * distanceListenerSource) / distanceDeviceListener, 2));
 
-            device.nextIntensity += intensity;
+            if (thermalSource.hitPlayer== false)
+            {
+                intensity = 0.0f;
+            }
+            else if(thermalSource.obsatacleAfterPlayer == true && thermalSource.distanceObsatacleAfterPlayer - distanceSourceDevice <= thermalSource.turnOffDistance)
+            {
+                intensity = 0.0f;
+            }
+            else
+            {
+                device.nextIntensity += intensity;
+            }
+
+            if (intensity == 0.0f)
+            {
+                device.renderers.material = device.redMat;
+
+            }
+            else
+            {
+                device.renderers.material = device.greenMat;
+
+            }
         }
     }
 }
