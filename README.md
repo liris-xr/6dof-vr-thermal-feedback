@@ -14,7 +14,7 @@ Creating ambient thermal feedback for VR experience is a challenge, and while nu
 
 >__*New:*__ __Obstacle Awareness__ 
 >
->Obstacless between the thermal source and the user will be detected and the thermal feedback will be adjusted accordingly.
+>Obstacles between the thermal source and the user will be detected and the thermal feedback will be adjusted accordingly.
 
 ## Thermal Feedback System
 ### Hardware Shopping List
@@ -67,7 +67,10 @@ Creating ambient thermal feedback for VR experience is a challenge, and while nu
    - If you see "DMX" in the monitor, the firmware is successfully installed.  
 
 ### Wiring
-Plug DMX Shield on the Arduino board using the stack connectors except for the RX/TX pins. Connect the DMX Shield RX/TX pins to the Serial Port 1 RX/TX pins on the Arduino board using 2 F/F jumper wires. 
+Plug DMX Shield on the Arduino board using the stack connectors except for the RX/TX pins. Connect the DMX Shield RX/TX pins to the Serial Port 1 RX/TX pins on the Arduino board using 2 F/F jumper wires.
+
+### (Optionnal) 3D Printing
+In the `3DPrintCase` folder, you'll find a ready to 3D print case that fits nicely the Arduino Mega and the DMX Shield. We also provide the original CAD file (created in Fusion 360). Thanks to [@eliottzim](https://www.github.com/eliottzim) for designing the case !
 
 ## Unity Package
 ### Prerequisites  
